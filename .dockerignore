@@ -2,3 +2,4 @@ venv
 dockerfile
 tasks.db
 .venv
+.idea
