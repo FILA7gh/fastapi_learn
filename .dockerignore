@@ -1,0 +1,4 @@
+venv
+dockerfile
+tasks.db
+.venv
