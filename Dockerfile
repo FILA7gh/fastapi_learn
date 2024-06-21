@@ -1,7 +1,20 @@
-FROM python:3.11-slim
+# Используем официальный образ Python в качестве базового
+FROM python:3.9-slim
 
+# Устанавливаем рабочую директорию в контейнере
+WORKDIR /app
+
+# Копируем файл зависимостей в рабочую директорию
+COPY requirements.txt .
+
+# Устанавливаем зависимости
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Копируем всё содержимое текущей директории в рабочую директорию контейнера
 COPY . .
 
-RUN pip install -r requirements.txt
+# Открываем порт
+EXPOSE 80
 
-CMD ['uvicorn', 'main:app', '--hots', '0.0.0.0', '--port', '80']
+# Команда для запуска приложения
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
