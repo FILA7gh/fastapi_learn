@@ -1,0 +1,6 @@
+venv
+../Dockerfile
+tasks.db
+.venv
+.idea
+.env
