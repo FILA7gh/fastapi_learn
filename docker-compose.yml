@@ -6,7 +6,7 @@ services:
     restart: always
     container_name: 'database'
     env_file:
-      - ../.env
+      - .env
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
@@ -17,7 +17,9 @@ services:
       - '5432:5432'
 
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: 'backend'
     volumes:
       - ${PWD}:/apps
@@ -30,7 +32,7 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
     ports:
-      - '80:80'
+      - '81:81'
     depends_on:
       - web
 
